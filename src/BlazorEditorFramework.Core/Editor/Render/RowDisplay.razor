@@ -1,0 +1,13 @@
+@if (Row.Cols.Any())
+{
+    <div class="editor-line">
+        @foreach (var col in Row.Cols)
+        {
+            <ColDisplay Col="col"/>
+        }
+    </div>
+}
+
+@code {
+    [Parameter] public Row Row { get; set; } = default!;
+}
