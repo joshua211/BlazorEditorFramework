@@ -1,0 +1,15 @@
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+<div id="editor" style="white-space: pre-wrap;" contenteditable="true">
+
+    <Virtualize @ref="virtualize" ItemsProvider="GetRowsAsync" ItemSize="60" OverscanCount="50">
+        <ItemContent>
+            <RowDisplay @key="@context.From" row="@context"/>
+        </ItemContent>
+    </Virtualize>
+</div>
+
+<div class="mt-16 flex flex-col">
+    <div>
+        selection: @EditorState.Selection
+    </div>
+</div>

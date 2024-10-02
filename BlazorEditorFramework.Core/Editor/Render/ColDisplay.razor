@@ -1,0 +1,39 @@
+<ErrorBoundary>
+    <ChildContent>
+        @if (Col is TextCol textCol)
+        {
+            <span
+                class="@(string.IsNullOrWhiteSpace(textCol.ClassString) ? null : textCol.ClassString)"
+                from=@Col.From
+                to=@Col.To
+                tag="@textCol.Tag">
+                @if (string.IsNullOrEmpty(textCol.Content))
+                {
+                    <br/>
+                }
+                else
+                {
+                    @textCol.Content
+                }
+            </span>
+        }
+        else if (Col is DecorationCol deco)
+        {
+            <span from=@Col.From
+                  to=@Col.To
+                  class="@(string.IsNullOrWhiteSpace(deco.ClassString) ? null : deco.ClassString)"
+                  tag="@Col.Tag">
+                <DynamicComponent Type="deco.ViewType" Parameters="deco.Params"/>
+            </span>
+        }
+    </ChildContent>
+    <ErrorContent>
+        <span class="error-col">Error rendering: @(Col.Tag ?? "Unknown Component") </span>
+    </ErrorContent>
+
+
+</ErrorBoundary>
+
+@code {
+    [Parameter] public Col Col { get; set; } = default!;
+}
