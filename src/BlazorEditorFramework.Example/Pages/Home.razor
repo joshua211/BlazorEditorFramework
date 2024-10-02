@@ -1,7 +1,25 @@
 ﻿@page "/"
+@using BlazorEditorFramework.Core.Editor
+@using BlazorEditorFramework.Core.Editor.Render
+@using BlazorEditorFramework.Core.StateFactory.Abstractions
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+@if (state is not null)
+{
+    <EditorView EditorState="state"></EditorView>
+}
 
-Welcome to your new app.
+@code
+{
+    private EditorState? state;
+
+    [Inject] IEditorStateFactory StateFactory { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        var doc = "Hello World!";
+
+        state = StateFactory.Build(doc);
+    }
+}

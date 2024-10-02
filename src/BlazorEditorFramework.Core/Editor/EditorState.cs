@@ -33,7 +33,7 @@ public class EditorState
     private List<DocumentLine> lines;
     private List<DocumentPart> parts;
 
-    public EditorState(string document, string noteId, IInputHandler inputHandler, INodeCache nodeCache,
+    public EditorState(string document, string editorId, IInputHandler inputHandler, INodeCache nodeCache,
         IDocumentSplitter splitter,
         Selection? startSelection = null)
     {
@@ -43,7 +43,7 @@ public class EditorState
 
         var doc = document.Replace(Environment.NewLine, "\n");
         documentEventStream = new DocumentEventStream(doc, startSelection ?? new Selection(0, 0));
-        NoteId = noteId;
+        EditorId = editorId;
         classMappings = new List<ClassMappingExtension>();
         commands = new List<IEditorCommand>();
         inputFeatures = new List<IInputFeatureExtension>();
@@ -55,7 +55,7 @@ public class EditorState
 
     public string Document => documentEventStream.Document;
     public Selection Selection => documentEventStream.Selection;
-    public string NoteId { get; private set; }
+    public string EditorId { get; private set; }
     public IReadOnlyList<DocumentLine> Lines => lines;
     public IReadOnlyCollection<ClassMappingExtension> ClassMappings => classMappings;
 
