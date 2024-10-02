@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorEditorFramework.Core", "BlazorEditorFramework.Core\BlazorEditorFramework.Core.csproj", "{EEDA3601-8E4A-459C-ADD3-2B5ADB744A9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorEditorFramework.Core", "src\BlazorEditorFramework.Core\BlazorEditorFramework.Core.csproj", "{EEDA3601-8E4A-459C-ADD3-2B5ADB744A9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorEditorFramework.Example", "src\BlazorEditorFramework.Example\BlazorEditorFramework.Example.csproj", "{079AE11B-5854-4583-90AE-776EB1B57729}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +14,9 @@ Global
 		{EEDA3601-8E4A-459C-ADD3-2B5ADB744A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEDA3601-8E4A-459C-ADD3-2B5ADB744A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEDA3601-8E4A-459C-ADD3-2B5ADB744A9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{079AE11B-5854-4583-90AE-776EB1B57729}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{079AE11B-5854-4583-90AE-776EB1B57729}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{079AE11B-5854-4583-90AE-776EB1B57729}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{079AE11B-5854-4583-90AE-776EB1B57729}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
