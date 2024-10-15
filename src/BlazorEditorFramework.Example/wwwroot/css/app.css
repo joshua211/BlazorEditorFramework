@@ -1,3 +1,22 @@
+.tooltip-window {
+    position: absolute;
+    z-index: 1000;
+    background-color: #959595;
+    border: 1px solid #4c4c4c;
+    border-radius: 5px;
+    padding: 10px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.word-even {
+    background-color: #df8d8d;
+}
+
+.word-odd {
+    background-color: #67afc1;
+}
+
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }

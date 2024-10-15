@@ -1,7 +1,10 @@
 ﻿@page "/"
 @using BlazorEditorFramework.Core.Editor
+@using BlazorEditorFramework.Core.Editor.Extensions.BaseTypes
 @using BlazorEditorFramework.Core.Editor.Render
 @using BlazorEditorFramework.Core.StateFactory.Abstractions
+@using BlazorEditorFramework.Example.Decorations
+@using BlazorEditorFramework.Example.Parsing
 
 <PageTitle>Home</PageTitle>
 
@@ -21,5 +24,9 @@
         var doc = "Hello World!";
 
         state = StateFactory.Build(doc);
+        state.AddExtension(new ExampleLanguageExtension(new ExampleParser()));
+        state.AddExtension(new ClassMappingExtension("even", "word-even"));
+        state.AddExtension(new ClassMappingExtension("odd", "word-odd"));
+        state.AddExtension(new TooltipDecoration());
     }
 }

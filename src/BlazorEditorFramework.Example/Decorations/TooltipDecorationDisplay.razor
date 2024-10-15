@@ -1,0 +1,10 @@
+<span @onmouseenter="OnMouseEnter" @onmouseleave="OnMouseLeave">
+    @Text
+</span>
+
+@if (showTooltip)
+{
+    <div class="tooltip-window">
+        @Count Characters
+    </div>
+}
