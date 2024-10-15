@@ -110,6 +110,7 @@
             ev.preventDefault();
             ev.stopPropagation();
             let anchorNode = window.getSelection().anchorNode;
+            console.log("Initial anchor node", anchorNode);
             while (anchorNode.hasChildNodes()) {
                 let nextNode = anchorNode.firstChild;
                 while (nextNode && nextNode.nodeType === 8) { // 8 is the nodeType for comments
@@ -124,6 +125,7 @@
             while (anchorNode.parentNode && anchorNode.attributes === undefined || anchorNode.attributes['from'] === undefined) {
                 anchorNode = anchorNode.parentNode;
             }
+            console.log("Anchor node", anchorNode);
             let focusNode = window.getSelection().focusNode;
             while (focusNode.hasChildNodes()) {
                 let nextNode = focusNode.firstChild;
@@ -155,7 +157,6 @@
     }
 
     function setSelection(from, to) {
-        console.log("Setting selection", from, to);
         const selection = window.getSelection();
         const range = selection.getRangeAt(0).cloneRange();
         // search for the node where from is inside the node attribute 'from' and 'to' 
@@ -174,6 +175,7 @@
                 break;
             }
         }
+        console.log("Start node", startNode);
         let endNode = null;
         let endNodeOffset = 0;
         for (let i = 0; i < nodes.length; i++) {
@@ -189,13 +191,28 @@
             }
         }
         if (startNode && endNode) {
-            range.setStart(startNode.firstChild, from - startNodeOffset);
-            range.setEnd(endNode.firstChild, to - endNodeOffset);
+            try {
+                range.setStart(getRawText(startNode), from - startNodeOffset);
+                range.setEnd(getRawText(endNode), to - endNodeOffset);
             selection.removeAllRanges();
             selection.addRange(range);
+            } catch (e) {
+                console.log("Error setting selection", e);
+            }
         } else {
             console.log("Could not find start or end node", startNode, endNode);
         }
+    }
+
+    function getRawText(node) {
+        let child = node.firstChild;
+        while (child.nodeType === 8 && child.nextSibling) { // 8 is the nodeType for comments
+            child = child.nextSibling;
+        }
+        while (child.nodeType !== 3 && child.firstChild) {
+            child = child.firstChild;
+        }
+        return child;
     }
 
     ;// CONCATENATED MODULE: ./src/application.ts
