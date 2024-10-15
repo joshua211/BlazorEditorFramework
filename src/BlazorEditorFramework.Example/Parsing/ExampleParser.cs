@@ -15,7 +15,7 @@ public partial class ExampleParser : ILanguageParser
     public Task<IReadOnlyCollection<Node>> ParseDocumentParts(string document, List<DocumentPart> partsToParse)
     {
         var nodes = new List<Node>();
-        var from = 0;
+        var from = partsToParse.FirstOrDefault()?.From ?? 0;
         var to = 0;
 
         foreach (var part in partsToParse)

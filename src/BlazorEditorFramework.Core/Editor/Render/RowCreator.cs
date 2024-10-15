@@ -116,12 +116,25 @@ public class RowCreator : IRowCreator
             events.Add((deco.To, false, false, deco));
         }
 
-        // Sort events by position and then by type (end events before start events if at the same position)
+        // Sorting rules:
+        // 1. Sort by position
+        // 2. Start events before end events
+        // 3. Node start before decoration start if position equals
         events.Sort((a, b) =>
         {
+            // 1. Sort by position
             int posComp = a.position.CompareTo(b.position);
             if (posComp != 0) return posComp;
-            return a.isStart == b.isStart ? 0 : a.isStart ? 1 : -1; // End events first
+
+            // 2. End events before start events
+            if (a.isStart && b.isStart == false) return 1;
+            if (a.isStart == false && b.isStart) return -1;
+
+            // 3. Node start before decoration start if position equals
+            if (a.isNode && b.isNode == false) return -1;
+            if (a.isNode == false && b.isNode) return 1;
+
+            return 0;
         });
 
         // Process through sorted events

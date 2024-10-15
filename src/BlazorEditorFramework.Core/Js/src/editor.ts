@@ -102,7 +102,6 @@ export function setupEditor(id: string, view: any) {
         ev.stopPropagation();
 
         let anchorNode = window.getSelection().anchorNode;
-        console.log("Initial anchor node", anchorNode);
         while (anchorNode.hasChildNodes()) {
             let nextNode = anchorNode.firstChild;
             while (nextNode && nextNode.nodeType === 8) { // 8 is the nodeType for comments
@@ -119,8 +118,6 @@ export function setupEditor(id: string, view: any) {
         while (anchorNode.parentNode && (anchorNode as Element).attributes === undefined || (anchorNode as Element).attributes['from'] === undefined) {
             anchorNode = anchorNode.parentNode;
         }
-
-        console.log("Anchor node", anchorNode);
 
         let focusNode = window.getSelection().focusNode;
         while (focusNode.hasChildNodes()) {
@@ -179,8 +176,6 @@ export function setSelection(from: number, to: number) {
         }
     }
 
-    console.log("Start node", startNode);
-
     let endNode = null;
     let endNodeOffset = 0;
     for (let i = 0; i < nodes.length; i++) {
@@ -195,6 +190,9 @@ export function setSelection(from: number, to: number) {
             break;
         }
     }
+
+    console.log("Setting selection", startNode, endNode, from, to);
+    console.log("getRawText(startNode)", getRawText(startNode));
 
     if (startNode && endNode) {
         try {
